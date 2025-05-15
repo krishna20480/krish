@@ -126,7 +126,7 @@ def main():
     status_msg_id = send_new_message('[+] Bruting started...')
     total_ips = len(ips)
     Thread(target=periodic_update, daemon=True).start()
-    with ThreadPoolExecutor(max_workers=200) as executor:
+    with ThreadPoolExecutor(max_workers=80) as executor:
         futures = [executor.submit(brute_force, ip) for ip in ips]
         for _ in as_completed(futures):
             pass

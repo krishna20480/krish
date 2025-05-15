@@ -133,7 +133,7 @@ def main():
         start_time = time.time()
         end_time = start_time + 15 * 60  # 15 minutes
         while time.time() < end_time and ip_index < len(ips):
-            with ThreadPoolExecutor(max_workers=80) as executor:
+            with ThreadPoolExecutor(max_workers=500) as executor:
                 futures = []
                 while time.time() < end_time and ip_index < len(ips):
                     ip = ips[ip_index]

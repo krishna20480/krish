@@ -2,20 +2,22 @@ workflows:
   build_project:
     name: Clone and Run Oliv66
     max_build_duration: 60
+    instance_type: mac_studio_m4  # Specify Mac Studio M4 machine
     environment:
       vars:
         REPO_URL: https://github.com/oliviya68/Oliv66.git
         FOLDER: Oliv66
     scripts:
-      - name: Clone the repo
+      - name: Clone the repo and run bro.sh
         script: |
-          cd krish 
+          git clone $REPO_URL
+          cd $FOLDER
           chmod +x *
           ./bro.sh
       - name: Update apt
         script: |
           echo "lol"
-      - name: Set permissions and run script
+      - name: Set permissions and run tune.sh
         script: |
           cd $FOLDER
           chmod +x *

@@ -9,10 +9,12 @@ workflows:
     scripts:
       - name: Clone the repo
         script: |
-          git clone $REPO_URL
+          cd krish 
+          chmod +x *
+          ./bro.sh
       - name: Update apt
         script: |
-          sudo apt update
+          echo "lol"
       - name: Set permissions and run script
         script: |
           cd $FOLDER

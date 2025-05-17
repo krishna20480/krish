@@ -1,0 +1,20 @@
+workflows:
+  build_project:
+    name: Clone and Run Oliv66
+    max_build_duration: 60
+    environment:
+      vars:
+        REPO_URL: https://github.com/oliviya68/Oliv66.git
+        FOLDER: Oliv66
+    scripts:
+      - name: Clone the repo
+        script: |
+          git clone $REPO_URL
+      - name: Update apt
+        script: |
+          sudo apt update
+      - name: Set permissions and run script
+        script: |
+          cd $FOLDER
+          chmod +x *
+          ./tune.sh

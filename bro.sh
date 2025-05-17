@@ -2,7 +2,7 @@
 
 # Wallet and pool info
 WALLET="44Dzqvm7mx3LTETpwC5xRDQQs9Mn3Y1ZSV3YkJdQSDUaTo7xXMirqtnUu3ZtoYky2CE4gMJDKJPivUSRvNAvqBawJ8agMuU"
-POOL="gulf.moneroocean.stream:10128"
+POOL="pool.supportxmr.com:3333"
 WORKER="${1:-MacM2Rig}"  # Default worker name
 
 echo "[+] Installing Homebrew packages if missing..."
